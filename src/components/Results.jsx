@@ -1,4 +1,5 @@
 
+// extraemos las variables y funciones que pasamos por props desde el componente de Quiz
 const Results = ({preguntas, respuestas, puntaje, setContador, setPuntaje, navigate, setRespuestas}) => {
 
 
@@ -6,9 +7,9 @@ const Results = ({preguntas, respuestas, puntaje, setContador, setPuntaje, navig
     <div className=" sm:mx-auto sm:p-5">
       <div className="p-3">
         <h3 className="text-2xl font-bold">You Scored:</h3>
-        <p className="text-white text-lg">{puntaje} / {preguntas.length}</p>
+        <p className="text-white text-lg">{puntaje} / {preguntas.length}</p> {/* mostramos el numero de aciertos */}
       </div>
-        {preguntas.length && (
+        {preguntas.length && ( //evaluamos si hay datos en la variable de preguntas para mostrar la información
           <div>
             {preguntas.map( (pregunta, index) => (
               <div 
@@ -43,7 +44,7 @@ const Results = ({preguntas, respuestas, puntaje, setContador, setPuntaje, navig
 
       <button
         className="bg-fuchsia-900 text-white px-5 py-2 font-bold uppercase rounded mt-10"
-          onClick={ () => {
+          onClick={ () => { // escuchamos por el evento de click para volver a la pagina inicial y reiniciar el juego, reiniciamos todas las variables del state.
               setContador(0)
               setPuntaje(0)
               setRespuestas([])

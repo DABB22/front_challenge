@@ -1,3 +1,6 @@
+
+// página de error para errores 404 en nuestra app
+
 import { useRouteError } from 'react-router-dom'
 
 export default function ErrorPage404() {

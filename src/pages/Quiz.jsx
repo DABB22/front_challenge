@@ -4,30 +4,25 @@ import {useState} from 'react'
 import { obtenerDatosPreguntas } from "../data/questions";
 import Results from '../components/Results';
 
-export function loader() {
+export function loader() { // loader para obtener los datos de nuestra API
     const datosPreguntas = obtenerDatosPreguntas();
     return datosPreguntas;
 }
 
 const Quiz = () => {
     
-    const datosPreguntas = useLoaderData();
-    const navigate = useNavigate();
-    const [contador, setContador] = useState(0);
-    const [puntaje, setPuntaje] = useState(0);
-    const [respuestas, setRespuestas] = useState([]);
-    const preguntas = datosPreguntas.results;
-    console.log(preguntas)
-    console.log(preguntas.length)
-    console.log(respuestas)
-    console.log(puntaje)
-
+    const datosPreguntas = useLoaderData(); // extraemos los datos que consultamos en el loader.
+    const navigate = useNavigate(); 
+    const [contador, setContador] = useState(0); // variable para manejar el state de las preguntas, se ira mostrando una a una.
+    const [puntaje, setPuntaje] = useState(0); // variable que maneja el state del puntaje del usuario
+    const [respuestas, setRespuestas] = useState([]); // Array que almacena el state de las respuestas del cliente
+    const preguntas = datosPreguntas.results; // variable que almacena el array de las preguntas que nos arrojó la consulta hacía la API
 
   return (
     <>
-        {contador < preguntas.length ? (
+        {contador < preguntas.length ? ( // si se cumple la condición mostraremos las preguntas una a una.
             <div className='sm:max-w-md sm:mx-auto sm:p-5'>
-                {datosPreguntas.results?.map((value,key)=>(
+                {datosPreguntas.results?.map((value,key)=>( // 
                     <div key={key}>
                         { contador === key && (
                             <div>
@@ -39,10 +34,10 @@ const Quiz = () => {
                                 <div className='p-3'>
                                     <button 
                                         className='bg-blue-800 text-white px-5 py-2 font-bold uppercase rounded mr-5 sm:mr-16'
-                                        onClick={() => { if (contador<=11) {
-                                                            setContador(key+1)
-                                                            setRespuestas([...respuestas, 'True'])
-                                                            if(value.correct_answer==='True'){
+                                        onClick={() => { if (contador<=11) { // cuando se de el evento click se ejecutaran estas funciones
+                                                            setContador(key+1) // aumentamos el contador en 1
+                                                            setRespuestas([...respuestas, 'True']) // almacenaremos la respuesta en el array de respuestas
+                                                            if(value.correct_answer==='True'){ // en caso de que sea correcta la respuesta aumentamos el puntaje en 1
                                                                 setPuntaje(puntaje+1)
                                                             }
                                                             
@@ -51,11 +46,11 @@ const Quiz = () => {
 
                                     <button 
                                         className='bg-red-800 text-white px-5 py-2 font-bold uppercase rounded'
-                                        onClick={() => { if (contador<=11) {
-                                                            setContador(key+1)
-                                                            setRespuestas([...respuestas, 'False'])
-                                                            if(value.correct_answer==='False'){
-                                                                setPuntaje(puntaje+1)
+                                        onClick={() => { if (contador<=11) { // cuando se de el evento click se ejecutaran estas funciones
+                                                            setContador(key+1) // aumentamos el contador en 1
+                                                            setRespuestas([...respuestas, 'False']) // almacenaremos la respuesta en el array de respuestas
+                                                            if(value.correct_answer==='False'){ 
+                                                                setPuntaje(puntaje+1) // en caso de que sea correcta la respuesta aumentamos el puntaje en 1
                                                             }
                                                         }} }
                                     >False</button>
@@ -69,7 +64,7 @@ const Quiz = () => {
 
                     ))}
             </div>
-        ):(
+        ):( // cuando ya no se cumpla la condición inicial mostraremos el componente de resultado el cual mostrará el puntaje, las preguntas acertadas y las que no y un boton para reiniciar el juego.
             <Results 
                 preguntas={preguntas}
                 respuestas={respuestas}

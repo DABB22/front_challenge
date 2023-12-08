@@ -11,7 +11,7 @@ const Home = () => {
 
         <button                     
             className="bg-pink-900 text-white px-5 py-2 font-bold uppercase rounded"
-            onClick={() => navigate('/quiz')} 
+            onClick={() => navigate('/quiz')}  // escuchamos por el evento de click para iniciar el juego de preguntas.
             type="button"
         >begin</button>
     </div>

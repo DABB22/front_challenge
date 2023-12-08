@@ -1,3 +1,6 @@
+
+// página de error para los errores que puedan ocurrir en el funcionamiento de nuestra app.
+
 import { useRouteError } from 'react-router-dom'
 
 export default function ErrorPage() {

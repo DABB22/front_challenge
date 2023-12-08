@@ -1,3 +1,6 @@
+
+//* usaremos Reac-Router-Dom para el proyecto junto con tailwindCSS
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
@@ -8,6 +11,7 @@ import ErrorPage from './components/ErrorPage';
 import ErrorPage404 from './components/ErrorPage404';
 import Home from './pages/Home';
 
+//* Definimos las rutas de nuestra app
 const router = createBrowserRouter([
   {
     path: '/',
